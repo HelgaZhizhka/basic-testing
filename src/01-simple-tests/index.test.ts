@@ -40,15 +40,15 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should return null for invalid arguments', () => {
-    let result = simpleCalculator({ a: 'invalid', b: 5, action: Action.Add });
+    let result = simpleCalculator({ a: '3', b: 5, action: Action.Add });
     expect(result).toBeNull();
 
-    result = simpleCalculator({ a: 7, b: 'invalid', action: Action.Add });
+    result = simpleCalculator({ a: 7, b: '4', action: Action.Add });
     expect(result).toBeNull();
 
     result = simpleCalculator({
-      a: 'invalid',
-      b: 'invalid',
+      a: '6',
+      b: '6',
       action: Action.Add,
     });
     expect(result).toBeNull();

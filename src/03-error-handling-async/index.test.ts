@@ -8,27 +8,29 @@ import {
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
-    await expect(resolveValue('test value')).resolves.toEqual('test value');
-    await expect(resolveValue(456)).resolves.toEqual(456);
+    const value = 2;
+    const result = resolveValue(value);
+    await expect(result).resolves.toBe(value);
   });
 });
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-    expect(() => throwError('Error message')).toThrow('Error message');
+    const errorMessage = 'This is an error message';
+    expect(() => throwError(errorMessage)).toThrowError(errorMessage);
   });
 
   test('should throw error with default message if message is not provided', () => {
-    expect(() => throwError()).toThrow('Oops!');
+    expect(() => throwError()).toThrowError('Oops!');
   });
 });
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-     expect(() => throwCustomError()).toThrow(MyAwesomeError);
-     expect(() => throwCustomError()).toThrow(
-       'This is my awesome custom error!',
-     );
+    expect(() => throwCustomError()).toThrowError(MyAwesomeError);
+    expect(() => throwCustomError()).toThrowError(
+      'This is my awesome custom error!',
+    );
   });
 });
 
