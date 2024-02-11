@@ -1,9 +1,7 @@
-import axios, { AxiosStatic } from 'axios';
-
+import axios from 'axios';
 import { throttledGetDataFromApi } from './index';
 
 const baseUrl = 'https://jsonplaceholder.typicode.com';
-
 const relativePath = 'users';
 
 jest.mock('lodash', () => {
@@ -15,34 +13,30 @@ jest.mock('lodash', () => {
   };
 });
 
-type MockedAxios = AxiosStatic & {
-  create: jest.Mock & { mockReturnValue: Function };
-};
-
-const mockedAxios = axios as unknown as MockedAxios;
-
 jest.mock('axios');
 
 beforeEach(() => {
   jest.clearAllMocks();
 
-  mockedAxios.create.mockReturnValue({
-    get: jest.fn().mockResolvedValue({ data: 'mocked data' }),
-  });
+  const getMock = jest.fn().mockResolvedValue({ data: 'mocked data' });
+
+  (axios.create as jest.Mock).mockImplementation(() => ({
+    get: getMock,
+  }));
 });
 
 describe('throttledGetDataFromApi', () => {
   test('should create instance with provided base url', async () => {
     await throttledGetDataFromApi(relativePath);
 
-    expect(mockedAxios.create).toBeCalledWith({
+    expect(axios.create).toBeCalledWith({
       baseURL: baseUrl,
     });
   });
 
   test('should perform request to correct provided url', async () => {
     await throttledGetDataFromApi(relativePath);
-    expect(mockedAxios.create().get).toBeCalledWith(relativePath);
+    expect(axios.create().get).toBeCalledWith(relativePath);
   });
 
   test('should return response data', async () => {
