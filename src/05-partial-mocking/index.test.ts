@@ -23,7 +23,7 @@ describe('partial mocking', () => {
     mockTwo();
     mockThree();
 
-    expect(consoleSpy).not.toHaveBeenCalled();
+    expect(consoleSpy).not.toBeCalled();
 
     consoleSpy.mockRestore();
   });
@@ -33,6 +33,6 @@ describe('partial mocking', () => {
 
     unmockedFunction();
 
-    expect(consoleSpy).toHaveBeenCalled();
+    expect(consoleSpy).toBeCalledWith('I am not mocked');
   });
 });
