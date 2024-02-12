@@ -1,33 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generateLinkedList should generate linked list from values 1 1`] = `
-{
-  "next": {
-    "next": {
-      "next": {
-        "next": null,
-        "value": null,
-      },
-      "value": 3,
-    },
-    "value": 2,
-  },
-  "value": 1,
-}
-`;
-
 exports[`generateLinkedList should generate linked list from values 2 1`] = `
 {
   "next": {
     "next": {
       "next": {
-        "next": null,
-        "value": null,
+        "next": {
+          "next": {
+            "next": {
+              "next": {
+                "next": {
+                  "next": {
+                    "next": {
+                      "next": null,
+                      "value": null,
+                    },
+                    "value": "GraphQL",
+                  },
+                  "value": "HTML",
+                },
+                "value": "CSS",
+              },
+              "value": "TypeScript",
+            },
+            "value": "Jest",
+          },
+          "value": "Webpack",
+        },
+        "value": "Node.js",
       },
-      "value": 6,
+      "value": "Vue",
     },
-    "value": 5,
+    "value": "React",
   },
-  "value": 2,
+  "value": "JavaScript",
 }
 `;
